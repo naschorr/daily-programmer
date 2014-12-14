@@ -24,6 +24,11 @@ float Complex::modulus()
 	return std::pow((std::pow((double)m_real,2.0)+std::pow((double)m_imag,2.0)),(0.5));
 }
 
+float Complex::argument()
+{
+	return std::atan2(m_imag, m_real);	
+}
+
 Complex Complex::conjugate()
 {
 	return Complex(m_real, m_imag*(-1));
@@ -54,6 +59,14 @@ Complex operator*(Complex left, Complex right)
 	float new_imag = left.m_real * right.m_imag + left.m_imag * right.m_real;
 
 	return Complex(new_real, new_imag);
+}
+
+Complex operator/(Complex left, Complex right)
+{
+	Complex numerator = left * right.conjugate();
+	Complex denominator = right * right.conjugate();
+
+	return Complex(numerator.m_real / denominator.m_real, numerator.m_imag / denominator.m_real);
 }
 
 Complex operator+(Complex left, Complex right)
