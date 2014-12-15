@@ -10,19 +10,19 @@ private:
 	float mX2;
 	float mY2;
 
+public:
 	struct coord
 	{
 		float x;
 		float y;
 	};
-
-public:
 	Stick(int id, float x1, float y1, float x2, float y2);
-	coord getLowLeft();
-	coord getUpRight();
+	coord getLeft();
+	coord getRight();
+	coord getLowest();
+	coord getHighest();
 	float getAvgHeight();
 	int getID();
-
 };
 
 #endif

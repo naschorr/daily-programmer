@@ -9,58 +9,72 @@ Stick::Stick(int id, float x1, float y1, float x2, float y2)
 	mY2 = y2;
 }
 
-Stick::coord Stick::getLowLeft()
+Stick::coord Stick::getLeft()
 {
-	int x, y = 0;
+	coord left = {mX1, mY1};
 
-	if( mX1 <= mX2 )
+	if( mX1 < mX2 )
 	{
-		x = mX1;
+		return left;
 	}
 	else
 	{
-		x = mX2;
-	}
+		left.x = mX2;
+		left.y = mY2;
 
-	if( mY1 <= mY2 )
-	{
-		y = mY1;
+		return left;
 	}
-	else
-	{
-		y = mY2;
-	}
-
-	coord lowLeft = {x,y};
-
-	return lowLeft;
 }
 
-Stick::coord Stick::getUpRight()
+Stick::coord Stick::getRight()
 {
-	int x, y = 0;
+	coord right = {mX1, mY1};
 
-	if( mX1 <= mX2 )
+	if( mX1 > mX2 )
 	{
-		x = mX2;
+		return right;
 	}
 	else
 	{
-		x = mX1;
-	}
+		right.x = mX2;
+		right.y = mY2;
 
-	if( mY1 <= mY2 )
+		return right;
+	}
+}
+
+Stick::coord Stick::getHighest()
+{
+	coord high = {mX1, mY1};
+
+	if( mY1 > mY2 )
 	{
-		y = mY2;
+		return high;
 	}
 	else
 	{
-		y = mY1;
+		high.x = mX2;
+		high.y = mY2;
+
+		return high;
 	}
+}
 
-	coord upRight = {x,y};
+Stick::coord Stick::getLowest()
+{
+	coord low = {mX1, mY1};
 
-	return upRight;
+	if( mY1 < mY2 )
+	{
+		return low;
+	}
+	else
+	{
+		low.x = mX2;
+		low.y = mY2;
+
+		return low;
+	}
 }
 
 float Stick::getAvgHeight()
